@@ -1,0 +1,2 @@
+aspose-ocr
+opencv-python
