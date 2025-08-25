@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { GraduationCap, Shield, Users } from "lucide-react"
+import StudentSignup from "./student/StudentSignup/StudentSignup"
 
 export default function LoginPage() {
   const [selectedRole, setSelectedRole] = useState<"student" | "admin" | "clerical">("student")
@@ -57,18 +58,26 @@ export default function LoginPage() {
   const IconComponent = currentConfig.icon
 
   return (
+    <>
+    <StudentSignup />
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center space-x-2">
-            <GraduationCap className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-foreground">Y4D Platform</h1>
+            <div className="flex-shrink-0 flex items-center">
+            <img
+              className="h-10 w-auto"
+              src="https://www.y4d.ngo/assets/images/y4d/logo.png"
+              alt="NGO Logo"
+            />
+          </div>
           </div>
           <p className="text-muted-foreground">Youth for Development Career Management</p>
         </div>
 
         {/* Role Selection */}
+        
         <Card>
           <CardHeader className="text-center pb-4">
             <div className="flex justify-center mb-2">
@@ -135,5 +144,6 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

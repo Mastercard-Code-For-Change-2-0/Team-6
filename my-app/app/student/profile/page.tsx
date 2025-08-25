@@ -9,7 +9,7 @@ export default function StudentProfile() {
   return (
     <AuthGuard allowedRoles={["student"]}>
       <div className="min-h-screen bg-background">
-        <Header userRole="student" userName="John Doe" />
+        <Header userRole="student" userName="Sonali Priya" />
         <div className="flex">
           <StudentSidebar />
           <main className="flex-1 p-6">
