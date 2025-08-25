@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role-Based Login System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div className="flex-shrink-0 flex items-center">
+            <img
+              className="h-10 w-auto"
+              src="https://www.y4d.ngo/assets/images/y4d/logo.png"
+              alt="NGO Logo"
+            />
+          </div>
+            <h1>Welcome to Student Management System</h1>
+            <p>A secure platform for students, administrators, and clerical staff</p>
+        </header>
+        
+        <main>
+            <div class="card">
+                <h2>Access Your Account</h2>
+                <p>Please login to access your personalized dashboard based on your role.</p>
+                <div class="buttons">
+                    <a href="/login" class="btn primary">Login<select>
+                        <option>student <a href="student-dashboard.html"></a></option>
+                        <option value="admin">Admin <a href=""></a></option>
+                        <option value="clerical">Clerical</option>
+                    </select></a>
+                    <a href = "/signup.html" class="btn outline">Sign Up as Student</a>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Student Features</h3>
+                    <ul>
+                        <li>Manage your profile</li>
+                        <li>Upload documents</li>
+                        <li>Manage privacy settings</li>
+                    </ul>
+                </div>
+                
+                <div class="feature">
+                    <h3>Admin Features</h3>
+                    <ul>
+                        <li>User management</li>
+                        <li>System configuration</li>
+                        <li>Access control</li>
+                    </ul>
+                </div>
+                
+                <div class="feature">
+                    <h3>Clerical Features</h3>
+                    <ul>
+                        <li>Document processing</li>
+                        <li>Record management</li>
+                        <li>Student assistance</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 y4d foundation. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

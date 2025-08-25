@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Student Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="sidebar">
+                <h2>Admin Dashboard</h2>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" data-tab="users">User Management</a></li>
+                    <li><a href="#" data-tab="reports">Reports</a></li>
+                    <li><a href="#" data-tab="settings">System Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+            
+            <div class="main-content">
+                <div class="dashboard-header">
+                    <h2>Admin Control Panel</h2>
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Profile">
+                        <span id="admin-username">admin</span>
+                    </div>
+                </div>
+                
+                <!-- User Management Tab -->
+                <div class="tab-pane active" id="users-tab">
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>Total Users</h3>
+                            <p id="total-users">0</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Active Students</h3>
+                            <p id="active-students">0</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Clerical Staff</h3>
+                            <p id="clerical-staff">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Add New User</h3>
+                        <div id="add-user-success" class="success-message"></div>
+                        <div id="add-user-error" class="error-message"></div>
+                        
+                        <form id="add-user-form">
+                            <div class="form-group">
+                                <label for="new-username">Username</label>
+                                <input type="text" id="new-username" name="username" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password">Password</label>
+                                <input type="password" id="new-password" name="password" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-email">Email</label>
+                                <input type="email" id="new-email" name="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-name">Full Name</label>
+                                <input type="text" id="new-name" name="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-role">Role</label>
+                                <select id="new-role" name="role" class="form-control" required>
+                                    <option value="">Select Role</option>
+                                    <option value="student">Student</option>
+                                    <option value="clerical">Clerical</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                            
+                            <div class="buttons">
+                                <button type="submit" class="btn primary">Add User</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>User Management</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-list">
+                                    <!-- Users will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reports Tab -->
+                <div class="tab-pane" id="reports-tab">
+                    <div class="card">
+                        <h3>System Reports</h3>
+                        <p>View and generate reports about system usage and user activities.</p>
+                        
+                        <div class="form-group">
+                            <label for="report-type">Report Type</label>
+                            <select id="report-type" class="form-control">
+                                <option value="user-activity">User Activity</option>
+                                <option value="document-uploads">Document Uploads</option>
+                                <option value="consent-status">Consent Status</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date-range">Date Range</label>
+                            <select id="date-range" class="form-control">
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="year">This Year</option>
+                            </select>
+                        </div>
+                        
+                        <div class="buttons">
+                            <button id="generate-report" class="btn primary">Generate Report</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Report Results</h3>
+                        <div id="report-container">
+                            <p>Select a report type and date range above, then click "Generate Report" to view results.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Tab -->
+                <div class="tab-pane" id="settings-tab">
+                    <div class="card">
+                        <h3>System Settings</h3>
+                        <div id="settings-success" class="success-message"></div>
+                        <div id="settings-error" class="error-message"></div>
+                        
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <label for="site-name">Site Name</label>
+                                <input type="text" id="site-name" name="siteName" class="form-control" value="Student Management System">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="max-upload-size">Maximum Upload Size (MB)</label>
+                                <input type="number" id="max-upload-size" name="maxUploadSize" class="form-control" value="5" min="1" max="20">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="allowed-file-types">Allowed File Types</label>
+                                <input type="text" id="allowed-file-types" name="allowedFileTypes" class="form-control" value="pdf,jpg,png,doc,docx">
+                                <small>Comma-separated list of file extensions</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="enable-registration" name="enableRegistration">
+                                    Enable Public Registration
+                                </label>
+                            </div>
+                            
+                            <div class="buttons">
+                                <button type="submit" class="btn primary">Save Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab Navigation
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and tabs
+                document.querySelectorAll('.sidebar-menu a').forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Show the corresponding tab
+                const tabId = this.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Load admin profile
+        async function loadAdminProfile() {
+            try {
+                const response = await fetch('/api/profile');
+                
+                if (response.ok) {
+                    const user = await response.json();
+                    document.getElementById('admin-username').textContent = user.username || 'admin';
+                }
+            } catch (error) {
+                console.error('Error loading admin profile:', error);
+            }
+        }
+        
+        // Load users
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/users');
+                
+                if (response.ok) {
+                    const users = await response.json();
+                    const usersList = document.getElementById('users-list');
+                    
+                    // Update dashboard cards
+                    document.getElementById('total-users').textContent = users.length;
+                    document.getElementById('active-students').textContent = users.filter(user => user.role === 'student' && user.active === 1).length;
+                    document.getElementById('clerical-staff').textContent = users.filter(user => user.role === 'clerical').length;
+                    
+                    // Clear existing list
+                    usersList.innerHTML = '';
+                    
+                    // Add users to list
+                    users.forEach(user => {
+                        const row = document.createElement('tr');
+                        
+                        const usernameCell = document.createElement('td');
+                        usernameCell.textContent = user.username;
+                        
+                        const nameCell = document.createElement('td');
+                        nameCell.textContent = user.name || '-';
+                        
+                        const emailCell = document.createElement('td');
+                        emailCell.textContent = user.email;
+                        
+                        const roleCell = document.createElement('td');
+                        roleCell.textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+                        
+                        const statusCell = document.createElement('td');
+                        statusCell.textContent = user.active === 1 ? 'Active' : 'Inactive';
+                        statusCell.style.color = user.active === 1 ? '#2ecc71' : '#e74c3c';
+                        
+                        const actionsCell = document.createElement('td');
+                        
+                        // Edit button
+                        const editBtn = document.createElement('button');
+                        editBtn.className = 'btn outline btn-sm';
+                        editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+                        editBtn.title = 'Edit User';
+                        editBtn.addEventListener('click', () => editUser(user.id));
+                        
+                        // Toggle active status button
+                        const toggleBtn = document.createElement('button');
+                        toggleBtn.className = 'btn outline btn-sm';
+                        toggleBtn.innerHTML = user.active === 1 ? '<i class="fas fa-user-slash"></i>' : '<i class="fas fa-user-check"></i>';
+                        toggleBtn.title = user.active === 1 ? 'Deactivate User' : 'Activate User';
+                        toggleBtn.addEventListener('click', () => toggleUserStatus(user.id, user.active));
+                        
+                        actionsCell.appendChild(editBtn);
+                        actionsCell.appendChild(toggleBtn);
+                        
+                        row.appendChild(usernameCell);
+                        row.appendChild(nameCell);
+                        row.appendChild(emailCell);
+                        row.appendChild(roleCell);
+                        row.appendChild(statusCell);
+                        row.appendChild(actionsCell);
+                        
+                        usersList.appendChild(row);
+                    });
+                } else {
+                    console.error('Failed to load users');
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
+        
+        // Add new user
+        document.getElementById('add-user-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+            const email = document.getElementById('new-email').value;
+            const name = document.getElementById('new-name').value;
+            const role = document.getElementById('new-role').value;
+            
+            const successMessage = document.getElementById('add-user-success');
+            const errorMessage = document.getElementById('add-user-error');
+            
+            try {
+                const response = await fetch('/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password, email, name, role })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    successMessage.textContent = data.message || 'User added successfully';
+                    errorMessage.textContent = '';
+                    
+                    // Clear form
+                    document.getElementById('add-user-form').reset();
+                    
+                    // Reload users list
+                    loadUsers();
+                } else {
+                    errorMessage.textContent = data.error || 'Failed to add user';
+                    successMessage.textContent = '';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'An error occurred. Please try again later.';
+                successMessage.textContent = '';
+                console.error('Add user error:', error);
+            }
+        });
+        
+        // Edit user (placeholder function)
+        function editUser(userId) {
+            alert(`Edit user with ID: ${userId} (This feature is not implemented in this demo)`);
+        }
+        
+        // Toggle user active status (placeholder function)
+        function toggleUserStatus(userId, currentStatus) {
+            alert(`Toggle status for user with ID: ${userId} (This feature is not implemented in this demo)`);
+        }
+        
+        // Generate report (placeholder function)
+        document.getElementById('generate-report').addEventListener('click', function() {
+            const reportType = document.getElementById('report-type').value;
+            const dateRange = document.getElementById('date-range').value;
+            const reportContainer = document.getElementById('report-container');
+            
+            // Placeholder report data
+            reportContainer.innerHTML = `
+                <h4>${reportType.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Report - ${dateRange.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
+                <p>This is a placeholder for the ${reportType} report. In a real application, this would display actual data based on your selection.</p>
+                <div class="chart-placeholder">
+                    <p style="text-align: center; padding: 50px; background-color: #f8f9fa; border-radius: 4px;">Chart visualization would appear here</p>
+                </div>
+            `;
+        });
+        
+        // Save settings (placeholder function)
+        document.getElementById('settings-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const successMessage = document.getElementById('settings-success');
+            const errorMessage = document.getElementById('settings-error');
+            
+            successMessage.textContent = 'Settings saved successfully (This is a demo, settings are not actually saved)';
+            errorMessage.textContent = '';
+        });
+        
+        // Load data when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            loadAdminProfile();
+            // Note: loadUsers() is commented out because the API endpoint is not implemented in this demo
+            // loadUsers();
+        });
+    </script>
+</body>
+</html>
