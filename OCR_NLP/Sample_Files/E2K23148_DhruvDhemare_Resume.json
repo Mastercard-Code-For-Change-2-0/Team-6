@@ -1,0 +1,15 @@
+{
+    "Email": "dhruvdhemare@gmail.com",
+    "Skills": [
+        "python",
+        "java",
+        "communication",
+        "javascript",
+        "c++"
+    ],
+    "Education": [
+        "bachelor of engineering in electronics and telecommunication",
+        "college, chhatrapati sambhajinagar percentage: 76"
+    ],
+    "Work Experience": "Projects Voting App \u2014 Backend System GitHub Repo Technology Stack: Node.js, Express.js, MongoDB, Postman"
+}
